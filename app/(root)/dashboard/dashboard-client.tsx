@@ -16,17 +16,17 @@ export default function DashboardClientPage({ session }: { session: Session }) {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-accent">
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 pt-20">
+      <main className="w-full py-6 sm:px-6 lg:px-8 pt-20">
         <div className="px-4 py-6 sm:px-0">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-background rounded-lg shadow p-6">
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                <h2 className="text-2xl font-bold text-accent-foreground mb-2">
                   Welcome to Your Dashboard!
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-400">
                   Manage your account and explore better-auth features
                 </p>
               </div>
@@ -39,8 +39,10 @@ export default function DashboardClientPage({ session }: { session: Session }) {
                     }
                   />
                   <div className="text-sm">
-                    <p className="text-gray-900 font-medium">{user.name}</p>
-                    <p className="text-gray-500">{user.email}</p>
+                    <p className="text-accent-foreground font-medium">
+                      {user.name}
+                    </p>
+                    <p className="text-gray-400">{user.email}</p>
                   </div>
                 </div>
                 <button
@@ -53,8 +55,8 @@ export default function DashboardClientPage({ session }: { session: Session }) {
             </div>
 
             {/* Authentication Info */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-              <h3 className="text-lg font-medium text-blue-900 mb-2">
+            <div className="bg-accent border border-accent rounded-lg p-4 mb-6">
+              <h3 className="text-lg font-medium text-blue-700 mb-2">
                 Authentication Status
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -66,17 +68,17 @@ export default function DashboardClientPage({ session }: { session: Session }) {
                 </div>
                 <div>
                   <span className="font-medium text-blue-700">Provider: </span>
-                  <span className="ml-2 text-blue-600">Better-Auth</span>
+                  <span className="ml-2 text-blue-500">Better-Auth</span>
                 </div>
                 <div>
                   <span className="font-medium text-blue-700">User ID:</span>
-                  <span className="ml-2 text-blue-600">{user.id}</span>
+                  <span className="ml-2 text-blue-500">{user.id}</span>
                 </div>
                 <div>
                   <span className="font-medium text-blue-700">
                     Email Verified:
                   </span>
-                  <span className="ml-2 text-blue-600">
+                  <span className="ml-2 text-blue-500">
                     {user.emailVerified ? "Yes" : "No"}
                   </span>
                 </div>
@@ -84,7 +86,7 @@ export default function DashboardClientPage({ session }: { session: Session }) {
                   <span className="font-medium text-blue-700">
                     Account Created:
                   </span>
-                  <span className="ml-2 text-blue-600">
+                  <span className="ml-2 text-blue-500">
                     {user.createdAt.toLocaleString()}
                   </span>
                 </div>
@@ -93,7 +95,7 @@ export default function DashboardClientPage({ session }: { session: Session }) {
 
             {/* Demo Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-accent rounded-lg p-6">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -109,16 +111,16 @@ export default function DashboardClientPage({ session }: { session: Session }) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-foreground mb-2">
                   Social Login
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="dark:text-gray-300 text-gray-600 text-sm">
                   Seamlessly authenticate with Google, GitHub, and other social
                   providers.
                 </p>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-accent rounded-lg p-6">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-green-600"
@@ -134,15 +136,15 @@ export default function DashboardClientPage({ session }: { session: Session }) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-foreground mb-2">
                   User Management
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="dark:text-gray-300 text-gray-600 text-sm">
                   Manage user accounts, profiles, and authentication settings.
                 </p>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-accent rounded-lg p-6">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-purple-600"
@@ -158,10 +160,10 @@ export default function DashboardClientPage({ session }: { session: Session }) {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-foreground mb-2">
                   Secure Access
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="dark:text-gray-300 text-gray-600 text-sm">
                   Protected routes and secure authentication flow with
                   better-auth.
                 </p>
@@ -169,8 +171,8 @@ export default function DashboardClientPage({ session }: { session: Session }) {
             </div>
 
             {/* Demo Actions */}
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
+            <div className="mt-8 p-6 bg-accent rounded-lg">
+              <h3 className="text-lg font-medium text-foreground mb-4">
                 Try These Actions
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -182,13 +184,13 @@ export default function DashboardClientPage({ session }: { session: Session }) {
                 </button>
                 <button
                   onClick={() => alert("Mock action: Settings saved!")}
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                  className="inline-flex items-center px-4 py-2 border border-accent text-sm font-medium rounded-md text-accent-foreground bg-background hover:bg-foreground hover:text-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
                 >
                   Save Settings
                 </button>
                 <button
                   onClick={() => alert("Mock action: Data exported!")}
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                  className="inline-flex items-center px-4 py-2 border border-accent text-sm font-medium rounded-md text-accent-foreground bg-background hover:bg-foreground hover:text-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
                 >
                   Export Data
                 </button>
@@ -196,11 +198,11 @@ export default function DashboardClientPage({ session }: { session: Session }) {
             </div>
 
             {/* Navigation */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="mt-8 pt-6 border-t border-accent">
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/"
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                  className="inline-flex items-center px-4 py-2 border border-accent text-sm font-medium rounded-md text-accent-foreground bg-background hover:bg-foreground hover:text-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
                 >
                   ← Back to Home
                 </Link>

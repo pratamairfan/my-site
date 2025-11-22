@@ -9,16 +9,6 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  emailVerification: {
-    sendVerificationEmail: async ({ user, verificationUrl }) => {
-      // Implement your email sending logic here
-      await sendEmail({
-        to: user.email,
-        subject: "Verify your email",
-        text: `Click the link to verify your email: ${verificationUrl}`,
-      });
-    },
-  },
   socialProviders: {
     github: {
       clientId: process.env.GITHUB_CLIENT_ID as string,
