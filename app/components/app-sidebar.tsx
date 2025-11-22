@@ -2,28 +2,31 @@
 
 import * as React from "react";
 import {
+  Archive,
   AudioWaveform,
   BookOpen,
   Bot,
   Command,
   Frame,
   GalleryVerticalEnd,
+  LayoutDashboard,
   Map,
   PieChart,
+  RadioTower,
   Settings2,
-  SquareTerminal,
 } from "lucide-react";
 
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
-import { TeamSwitcher } from "./team-switcher";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { createAuthClient } from "better-auth/react";
+
+const { useSession } = createAuthClient();
 
 // This is sample data.
 const data = {
@@ -51,123 +54,79 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      title: "Permit App",
       url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      icon: RadioTower,
       items: [
         {
-          title: "History",
+          title: "Permit Order",
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
+          title: "List Permit",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Inventory",
       url: "#",
-      icon: Bot,
+      icon: Archive,
       items: [
         {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
+          title: "Site / STO",
           url: "#",
         },
       ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: session } = useSession();
+
   return (
-    <Sidebar collapsible="icon" {...props} className="top-20">
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+    <Sidebar collapsible="icon" {...props} className="top-16 rounded-tr-lg">
+      <SidebarHeader className="rounded-tr-lg">
+        {session ? (
+          <NavUser session={session} />
+        ) : (
+          <div className="px-4 py-3 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <svg
+                className="h-4 w-4 animate-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                />
+              </svg>
+              <span>Loading...</span>
+            </div>
+          </div>
+        )}
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-      <SidebarRail />
+      {/*<SidebarRail />*/}
     </Sidebar>
   );
 }

@@ -28,9 +28,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       <SidebarProvider>
         <AppSidebar />
         <main className="w-full">
-          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <header className="flex sticky shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
             <div className="flex items-center gap-2 px-4">
-              <SidebarTrigger className="-ml-1" />
+              <SidebarTrigger className="-ml-1 cursor-pointer" />
               <Separator
                 orientation="vertical"
                 className="mr-2 data-[orientation=vertical]:h-4"
@@ -38,14 +38,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="#">
-                      Building Your Application
-                    </BreadcrumbLink>
+                    {/*<BreadcrumbLink href="#">
+                      Dashboards
+                    </BreadcrumbLink>*/}
+                    <BreadcrumbPage>Dashboard</BreadcrumbPage>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator className="hidden md:block" />
-                  <BreadcrumbItem>
+                  {/*<BreadcrumbItem>
                     <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                  </BreadcrumbItem>
+                  </BreadcrumbItem>*/}
                 </BreadcrumbList>
               </Breadcrumb>
             </div>

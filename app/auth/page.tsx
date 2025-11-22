@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import AuthClientPage from "./auth-client";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import Navigation from "../components/Navigation";
 
 export default async function AuthPage() {
   const session = await auth.api.getSession({
@@ -12,5 +13,10 @@ export default async function AuthPage() {
     redirect("/dashboard");
   }
 
-  return <AuthClientPage />;
+  return (
+    <>
+      <Navigation session={session} />
+      <AuthClientPage />
+    </>
+  );
 }
