@@ -18,7 +18,7 @@ export default function DashboardClientPage({ session }: { session: Session }) {
   return (
     <div className="min-h-screen bg-accent rounded-md">
       {/* Main Content */}
-      <main className="w-full py-6 sm:px-6 lg:px-8 pt-20">
+      <main className="w-full sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           <div className="bg-background rounded-lg shadow p-6">
             <div className="flex justify-between items-start mb-6">
