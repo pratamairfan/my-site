@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, signInSocial, signUp } from "@/lib/actions/auth-actions";
-import { toast } from "sonner";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircleIcon } from "lucide-react";
 
@@ -29,7 +28,7 @@ export default function AuthClientPage() {
       setError(
         `Error authenticating with ${provider}: ${
           err instanceof Error ? err.message : "Unknown error"
-        }`,
+        }`
       );
     } finally {
       setIsLoading(false);
@@ -46,18 +45,24 @@ export default function AuthClientPage() {
         const result = await signIn(email, password);
         if (!result.user) {
           setError("Invalid email or password");
+        } else {
+          const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+          router.push(callbackUrl);
         }
       } else {
         const result = await signUp(email, password, name);
         if (!result.user) {
           setError("Failed to create account");
+        } else {
+          const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+          router.push(callbackUrl);
         }
       }
     } catch (err) {
       setError(
         `Authentication error: ${
           err instanceof Error ? err.message : "Unknown error"
-        }`,
+        }`
       );
     } finally {
       setIsLoading(false);
@@ -91,7 +96,7 @@ export default function AuthClientPage() {
             <button
               onClick={() => handleSocialAuth("google")}
               disabled={isLoading}
-              className="w-full cursor-pointer flex items-center justify-center px-4 py-3 border border-background rounded-lg shadow-sm bg-background text-accent-foreground hover:bg-gray-50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full cursor-pointer flex items-center justify-center px-4 py-3 border border-background rounded-lg shadow-sm bg-background text-accent-foreground hover:bg-foreground hover:text-background focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
                 <path

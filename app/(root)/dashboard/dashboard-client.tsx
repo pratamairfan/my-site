@@ -1,19 +1,19 @@
 "use client";
-import { signOut } from "@/lib/actions/auth-actions";
 import { auth } from "@/lib/auth";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Maps from "./maps";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Building2,
+  CheckCircle2Icon,
+  HouseWifi,
+  RadioTower,
+} from "lucide-react";
+import { Modal } from "@/app/components/modal";
 
 type Session = typeof auth.$Infer.Session;
 
 export default function DashboardClientPage({ session }: { session: Session }) {
-  const router = useRouter();
   const user = session.user;
-
-  const handleSignOut = async () => {
-    await signOut();
-    router.push("/");
-  };
 
   return (
     <div className="min-h-screen bg-accent rounded-md">
@@ -24,196 +24,109 @@ export default function DashboardClientPage({ session }: { session: Session }) {
             <div className="flex justify-between items-start mb-6">
               <div>
                 <h2 className="text-2xl font-bold text-accent-foreground mb-2">
-                  Welcome to Your Dashboard!
+                  Hi, {user.name}! 👋🏼
                 </h2>
-                <p className="text-gray-400">
-                  Manage your account and explore better-auth features
-                </p>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center space-x-3">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src={
-                      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-                    }
-                  />
-                  <div className="text-sm">
-                    <p className="text-accent-foreground font-medium">
-                      {user.name}
-                    </p>
-                    <p className="text-gray-400">{user.email}</p>
-                  </div>
-                </div>
-                <button
-                  onClick={handleSignOut}
-                  className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
-                >
-                  Sign Out
-                </button>
+                <p className="text-gray-400">Welcome to dashboard</p>
               </div>
             </div>
 
             {/* Authentication Info */}
             <div className="bg-accent border border-accent rounded-lg p-4 mb-6">
-              <h3 className="text-lg font-medium text-blue-700 mb-2">
-                Authentication Status
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                Notifications Permit
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="font-medium text-blue-700">Status:</span>
-                  <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                    Authenticated
-                  </span>
-                </div>
-                <div>
-                  <span className="font-medium text-blue-700">Provider: </span>
-                  <span className="ml-2 text-blue-500">Better-Auth</span>
-                </div>
-                <div>
-                  <span className="font-medium text-blue-700">User ID:</span>
-                  <span className="ml-2 text-blue-500">{user.id}</span>
-                </div>
-                <div>
-                  <span className="font-medium text-blue-700">
-                    Email Verified:
-                  </span>
-                  <span className="ml-2 text-blue-500">
-                    {user.emailVerified ? "Yes" : "No"}
-                  </span>
-                </div>
-                <div>
-                  <span className="font-medium text-blue-700">
-                    Account Created:
-                  </span>
-                  <span className="ml-2 text-blue-500">
-                    {user.createdAt.toLocaleString()}
-                  </span>
+              <div className="text-sm">
+                <div className="h-36 overflow-auto">
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
+                  <Alert className="mb-2">
+                    <CheckCircle2Icon />
+                    <AlertDescription>
+                      This is an alert with icon, title and description.
+                    </AlertDescription>
+                  </Alert>
                 </div>
               </div>
             </div>
 
             {/* Demo Features */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-accent rounded-lg p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-6 gap-6">
+              <div className="bg-accent flex flex-col gap-2 rounded-lg p-6">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-indigo-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                  <Building2 className="w-6 h-6 text-indigo-600" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
-                  Social Login
+                  Witel
                 </h3>
-                <p className="dark:text-gray-300 text-gray-600 text-sm">
-                  Seamlessly authenticate with Google, GitHub, and other social
-                  providers.
-                </p>
+                <p className="dark:text-gray-300 text-gray-600 text-sm">0</p>
+                <Modal label="View" title="List Witel" />
               </div>
 
-              <div className="bg-accent rounded-lg p-6">
+              <div className="bg-accent flex flex-col gap-2 rounded-lg p-6">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-green-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                  <HouseWifi className="w-6 h-6 text-green-600" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
-                  User Management
+                  Datel
                 </h3>
-                <p className="dark:text-gray-300 text-gray-600 text-sm">
-                  Manage user accounts, profiles, and authentication settings.
-                </p>
+                <p className="dark:text-gray-300 text-gray-600 text-sm">0</p>
+                <Modal label="View" title="List Datel" />
               </div>
 
-              <div className="bg-accent rounded-lg p-6">
+              <div className="bg-accent flex flex-col gap-2 rounded-lg p-6">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-purple-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
+                  <RadioTower className="w-6 h-6 text-purple-600" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
-                  Secure Access
+                  STO / Site
                 </h3>
-                <p className="dark:text-gray-300 text-gray-600 text-sm">
-                  Protected routes and secure authentication flow with
-                  better-auth.
-                </p>
+                <p className="dark:text-gray-300 text-gray-600 text-sm">0</p>
+                <Modal label="View" title="List STO / Site" />
               </div>
             </div>
 
-            {/* Demo Actions */}
-            <div className="mt-8 p-6 bg-accent rounded-lg">
-              <h3 className="text-lg font-medium text-foreground mb-4">
-                Try These Actions
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => alert("Mock action: Profile updated!")}
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
-                >
-                  Update Profile
-                </button>
-                <button
-                  onClick={() => alert("Mock action: Settings saved!")}
-                  className="inline-flex items-center px-4 py-2 border border-accent text-sm font-medium rounded-md text-accent-foreground bg-background hover:bg-foreground hover:text-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
-                >
-                  Save Settings
-                </button>
-                <button
-                  onClick={() => alert("Mock action: Data exported!")}
-                  className="inline-flex items-center px-4 py-2 border border-accent text-sm font-medium rounded-md text-accent-foreground bg-background hover:bg-foreground hover:text-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
-                >
-                  Export Data
-                </button>
-              </div>
-            </div>
-
-            {/* Navigation */}
-            <div className="mt-8 pt-6 border-t border-accent">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/"
-                  className="inline-flex items-center px-4 py-2 border border-accent text-sm font-medium rounded-md text-accent-foreground bg-background hover:bg-foreground hover:text-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
-                >
-                  ← Back to Home
-                </Link>
-                <Link
-                  href="/auth"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
-                >
-                  Manage Account
-                </Link>
-              </div>
-            </div>
+            {/* Maps */}
+            <Maps />
           </div>
         </div>
       </main>

@@ -38,7 +38,9 @@ const CardWrapper = ({
       <CardHeader className={label !== "" ? "flex-row items-center" : ""}>
         <div className="grid gap-2">
           <CardTitle>
-            <h2>{title}</h2>
+            <h2 className="text-2xl font-bold text-accent-foreground mb-2">
+              {title}
+            </h2>
           </CardTitle>
           {description !== "" ? (
             <CardDescription>{description}</CardDescription>
