@@ -52,17 +52,13 @@ Follow these steps to get the project running locally on your machine.
     ```
 
 3.  **Set up environment variables**
-    Create a `.env` file in the root directory and add your credentials:
+    Copy the example environment file to `.env` and fill in your credentials:
 
-    ```env
-    DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
-    BETTER_AUTH_SECRET="your-secret-key"
-    GITHUB_CLIENT_ID="your-github-client-id"
-    GITHUB_CLIENT_SECRET="your-github-client-secret"
-    GOOGLE_CLIENT_ID="your-google-client-id"
-    GOOGLE_CLIENT_SECRET="your-google-client-secret"
-    NEXT_PUBLIC_APP_URL="http://localhost:3000"
+    ```bash
+    cp .env.example .env
     ```
+
+    Then open `.env` and update the values with your own configuration.
 
 4.  **Setup Database**
     Generate Prisma client and push the schema to your database:
