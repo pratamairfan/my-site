@@ -68,7 +68,7 @@ export function NavUser({ session }: { session: Session }) {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   {user.image ? (
-                    <AvatarImage src={user.image as string} alt={user.name} />
+                    <AvatarImage src={user.image} alt={user.name} />
                   ) : (
                     <AvatarFallback className="rounded-lg">
                       {user.name.charAt(0)}

@@ -4,24 +4,14 @@ import { ModeToggle } from "@/components/theme/theme-toggle";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Icons } from "./Icons";
 import { Radio } from "lucide-react";
 
 type Session = typeof auth.$Infer.Session;
 
 export default function Navigation({ session }: { session: Session | null }) {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const isActive = (path: string) => {
-    // Avoid changing markup during hydration: don't consider a route active
-    // until the component has mounted on the client.
-    if (!mounted) return false;
     return pathname === path;
   };
 
@@ -35,7 +25,6 @@ export default function Navigation({ session }: { session: Session | null }) {
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-              {/* <Icons.Radio className="w-5 h-5 text-white" /> */}
               <Radio className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold ">My SiTO</span>
@@ -45,6 +34,7 @@ export default function Navigation({ session }: { session: Session | null }) {
             <ModeToggle />
             <Link
               href="/"
+              suppressHydrationWarning
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive("/")
                   ? "text-indigo-600 bg-indigo-50"
@@ -66,6 +56,7 @@ export default function Navigation({ session }: { session: Session | null }) {
             {!session && (
               <Link
                 href="/auth"
+                suppressHydrationWarning
                 className={`hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive("/auth")
                     ? "text-indigo-600 bg-indigo-50"

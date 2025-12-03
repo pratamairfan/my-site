@@ -46,3 +46,29 @@ export const signOut = async () => {
   const result = await auth.api.signOut({ headers: await headers() });
   return result;
 };
+
+export const requestPasswordReset = async (email: string) => {
+  const result = await auth.api.forgetPassword({
+    body: {
+      email,
+      redirectTo: `${
+        process.env.NEXT_PUBLIC_APP_URL ||
+        process.env.BETTER_AUTH_URL ||
+        "http://localhost:3000"
+      }/reset-password`,
+    },
+  });
+
+  return result;
+};
+
+export const resetPassword = async (token: string, newPassword: string) => {
+  const result = await auth.api.resetPassword({
+    body: {
+      token,
+      newPassword,
+    },
+  });
+
+  return result;
+};
